@@ -1,0 +1,227 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f9d4c8 0%, #f7e6e4 100%);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.game {
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1,
+h2 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Режим игры */
+.game-mode {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.game-mode label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+  font-weight: 500;
+}
+
+.game-mode input[type='checkbox'] {
+  transform: scale(1.2);
+  accent-color: #007bff;
+}
+
+/* Статус хода */
+.status {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 15px 0;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+/* Игровая доска */
+.board-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1px;
+}
+
+.square {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  float: left;
+  font-size: 36px;
+  font-weight: bold;
+  height: 80px;
+  line-height: 80px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 80px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.square:hover {
+  background: #e9ecef;
+  transform: scale(1.05);
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.square.filled {
+  cursor: not-allowed;
+}
+
+.symbol {
+  opacity: 0;
+  animation: popIn 0.3s forwards;
+  display: inline-block;
+  font-weight: 900;
+}
+
+.symbol.x {
+  color: #007bff;
+  text-shadow: 0 1px 2px rgba(0, 123, 255, 0.3);
+}
+
+.symbol.o {
+  color: #dc3545;
+  text-shadow: 0 1px 2px rgba(220, 53, 69, 0.3);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Кнопки */
+.game-controls button,
+.modal button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-controls button {
+  background-color: #007bff;
+  color: white;
+  margin-top: 20px;
+}
+
+.game-controls button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Модальное окно */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 340px;
+  transform: scale(0.9);
+  animation: modalPop 0.4s ease-out forwards;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+.modal button {
+  background-color: #28a745;
+  color: white;
+}
+
+.modal button:hover {
+  background-color: #218838;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(33, 128, 56, 0.2);
+}
+
+@keyframes modalPop {
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
